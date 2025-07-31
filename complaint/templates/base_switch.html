@@ -1,0 +1,15 @@
+{% if base_template == "base_admin.html" %}
+    {% extends "base_admin.html" %}
+{% elif base_template == "base_manager.html" %}
+    {% extends "base_manager.html" %}
+{% elif base_template == "base_accountant.html" %}
+    {% extends "base_accountant.html" %}
+{% else %}
+    {% extends "base.html" %}
+{% endif %}
+
+{% block title %}Update Complaint{% endblock %}
+
+{% block content %}
+    {% include "complaint/complaint_edit.html" %}
+{% endblock %}

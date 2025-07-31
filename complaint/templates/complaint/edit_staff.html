@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-6 bg-white rounded-lg p-8">
+
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Edit Staff User</h2>
+
+    <form method="post" autocomplete="off" class="space-y-4">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <div class="">
+            <button type="submit"
+                    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-8 rounded-xl shadow">
+                Update Staff
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

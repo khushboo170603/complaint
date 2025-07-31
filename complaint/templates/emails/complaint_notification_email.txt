@@ -1,0 +1,10 @@
+Dear {{ customer_name }},
+
+Thank you for registering your complaint with us.
+
+Your complaint ticket number is: {{ ticket_number }}
+
+We will process your complaint and get back to you shortly.
+
+Best regards,
+Litset Service Portal Team

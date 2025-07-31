@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Complaints{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-6 px-4 sm:px-6 lg:px-0">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Complaint List</h2>
+
+    <!-- 🔍 Filter Form (GET) -->
+    <form method="get" class="mb-4 flex flex-col sm:flex-row sm:flex-wrap gap-4">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700">Search</label>
+            <input type="text" name="search" value="{{ search }}" placeholder="Search"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700">Filter by Status</label>
+            <select name="status" class="w-full px-3 py-2 border rounded border-gray-300">
+                <option value="" {% if not status %}selected{% endif %}>All</option>
+                <option value="open" {% if status == "open" %}selected{% endif %}>Open</option>
+                <option value="in_progress" {% if status == "in_progress" %}selected{% endif %}>In Progress</option>
+                <option value="resolved" {% if status == "resolved" %}selected{% endif %}>Resolved</option>
+                <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option> 
+            </select>
+        </div>
+
+        <div class="flex-1 min-w-[150px]">
+            <label class="block text-sm font-medium text-gray-700">From Date</label>
+            <input type="date" name="from_date" value="{{ from_date }}"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="flex-1 min-w-[150px]">
+            <label class="block text-sm font-medium text-gray-700">To Date</label>
+            <input type="date" name="to_date" value="{{ to_date }}"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="sm:self-end">
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply</button>
+        </div>
+    </form>
+
+    <!-- 📤 Export to Excel Button (POST) -->
+    <form method="post" action="{% url 'complaint_list' %}" class="mb-4">
+        {% csrf_token %}
+        <input type="hidden" name="export" value="true">
+        <input type="hidden" name="search" value="{{ search }}">
+        <input type="hidden" name="status" value="{{ status }}">
+        <input type="hidden" name="from_date" value="{{ from_date }}">
+        <input type="hidden" name="to_date" value="{{ to_date }}">
+        <button type="submit"
+                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full sm:w-auto">
+            Export to Excel
+        </button>
+    </form>
+
+    {% if complaints %}
+<!-- 🖥️ Table for medium and up -->
+<div class="hidden md:block overflow-x-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+    <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead class="bg-gray-100 text-left text-gray-700">
+            <tr>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Ticket No</th> 
+                <th class="py-2 px-2 text-center whitespace-nowrap">Name</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Number</th> 
+                <th class="py-2 px-2 text-center whitespace-nowrap">Email</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Product</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Issue Type</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Status</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Engineer</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Date</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Payment</th>
+                <th class="py-2 px-2 text-center whitespace-nowrap">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-100">
+            {% for complaint in complaints %}
+            <tr class="hover:bg-gray-50">
+                <td class="py-2 px-2 text-center text-blue-700 font-medium">{{ complaint.ticket_number }}</td>
+                <td class="py-2 px-2 text-center">{{ complaint.customer_name }}</td>
+                <td class="py-2 px-2 text-center">{{ complaint.mobile_number }}</td>
+                <td class="py-2 px-2 text-center truncate max-w-[150px]" title="{{ complaint.email }}">{{ complaint.email }}</td>
+                <td class="py-2 px-2 text-center truncate max-w-[150px]" title="{{ complaint.product.name|default:'Other' }}">
+                    {{ complaint.product.model_name|default:"Other" }}
+                </td>
+                <td class="py-2 px-2 text-center truncate max-w-[150px]" title="{{ complaint.issue_type|default:'-' }}">
+                    {{ complaint.issue_type|default:"-" }}
+                </td>
+                <td class="py-2 px-2 text-center">
+                    <span class="{% if complaint.status == 'open' %}bg-yellow-100 text-yellow-800{% elif complaint.status == 'resolved' %}bg-green-100 text-green-800{% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800{% else %}bg-gray-100 text-gray-600{% endif %} text-xs font-medium px-2 py-1 rounded">
+                        {{ complaint.get_status_display }}
+                    </span>
+                </td>
+                <td class="py-2 px-2 text-center">
+                    {{ complaint.assigned_engineer.username|default:"Not Assigned" }}
+                </td>
+                <td class="py-2 px-2 text-center">{{ complaint.created_at|date:"Y-m-d" }}</td>
+                <td class="py-2 px-2 text-center">{{ complaint.payment_status }}</td>
+                <td class="py-2 px-2 text-center">
+                    <div class="flex justify-center gap-2 flex-wrap">
+                        <a href="{% url 'complaint_detail' complaint.pk %}" class="text-blue-600 hover:underline">View</a> | 
+                        {% if user.profile.role == "admin" or user.profile.role == "manager" %}
+                        <a href="{% url 'complaint_edit' complaint.pk %}" class="text-red-600 hover:underline">Edit</a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- 📱 Card Layout for small screens -->
+<div class="md:hidden space-y-4">
+    {% for complaint in complaints %}
+    <div class="bg-white shadow rounded-lg p-4 border border-gray-200">
+        <div class="flex justify-between items-center mb-2">
+            <h3 class="text-blue-700 font-bold text-sm">#{{ complaint.ticket_number }}</h3>
+            <span class="text-xs px-2 py-1 rounded 
+                {% if complaint.status == 'open' %}bg-yellow-100 text-yellow-800
+                {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                {% else %}bg-gray-100 text-gray-600
+                {% endif %}">
+                {{ complaint.get_status_display }}
+            </span>
+        </div>
+        <p class="text-sm"><strong>Customer:</strong> {{ complaint.customer_name }}</p>
+        <p class="text-sm"><strong>Number:</strong> {{ complaint.mobile_number }}</p>
+        <p class="text-sm"><strong>Email:</strong> {{ complaint.email }}</p>
+        <p class="text-sm"><strong>Product:</strong> {{ complaint.product.model_name|default:"Other" }}</p>
+        <p class="text-sm"><strong>Issue:</strong> {{ complaint.issue_type|default:"-" }}</p>
+        <p class="text-sm"><strong>Engineer:</strong> {{ complaint.assigned_engineer.username|default:"Not Assigned" }}</p>
+        <p class="text-sm"><strong>Date:</strong> {{ complaint.created_at|date:"Y-m-d" }}</p>
+        <p class="text-sm"><strong>Payment:</strong> {{ complaint.payment_status }}</p>
+        <div class="mt-2 flex gap-2">
+            <a href="{% url 'complaint_detail' complaint.pk %}" class="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700">View</a>
+            {% if user.profile.role == "admin" or user.profile.role == "manager" %}
+            <a href="{% url 'complaint_edit' complaint.pk %}" class="bg-yellow-500 text-white text-xs px-3 py-1 rounded hover:bg-yellow-600">Edit</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+    <!-- Pagination -->
+    <div class="mt-4 flex justify-center sm:justify-end">
+        <nav class="inline-flex items-center space-x-1 text-sm">
+            {% if complaints.has_previous %}
+            <a href="?search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}&page={{ complaints.previous_page_number }}"
+               class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100">Previous</a>
+            {% endif %}
+
+            <span class="px-4 py-1 text-gray-700">Page {{ complaints.number }} of {{ complaints.paginator.num_pages }}</span>
+
+            {% if complaints.has_next %}
+            <a href="?search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}&page={{ complaints.next_page_number }}"
+               class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100">Next</a>
+            {% endif %}
+        </nav>
+    </div>
+    {% else %}
+    <p class="text-gray-600">No complaints found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'base_manager.html' %}
+{% load static %}
+
+{% block title %}All Complaints{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-6 px-4 sm:px-6 lg:px-0">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Complaint List</h2>
+
+    <!-- 🔍 Filter Form -->
+    <form method="get" class="mb-4 flex flex-wrap gap-2 items-center">
+        <input type="text" name="search" placeholder="Search by product or issue"
+               value="{{ search }}" class="w-64 px-3 py-2 border rounded border-gray-300">
+
+        <select name="status" class="px-3 py-2 border rounded border-gray-300">
+            <option value="">All Statuses</option>
+            <option value="pending" {% if status == "pending" %}selected{% endif %}>Pending</option>
+            <option value="in_progress" {% if status == "in_progress" %}selected{% endif %}>In Progress</option>
+            <option value="resolved" {% if status == "resolved" %}selected{% endif %}>Resolved</option>
+        </select>
+
+        <input type="date" name="from_date" value="{{ from_date }}" class="px-3 py-2 border rounded border-gray-300">
+        <input type="date" name="to_date" value="{{ to_date }}" class="px-3 py-2 border rounded border-gray-300">
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
+
+        <a href="?search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}&export=true"
+           class="ml-auto bg-green-600 text-white px-4 py-2 rounded">📥 Export</a>
+    </form>
+
+    <!-- 🖥 Table for large screens -->
+    <div class="hidden md:block">
+        <table class="w-full text-sm text-left border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b text-center">ID</th>
+                    <th class="py-2 px-4 border-b text-center">Ticket #</th>
+                    <th class="py-2 px-4 border-b text-center">Customer</th>
+                    <th class="py-2 px-4 border-b text-center">Product</th>
+                    <th class="py-2 px-4 border-b text-center">Status</th>
+                    <th class="py-2 px-4 border-b text-center">Engineer</th>
+                    <th class="py-2 px-4 border-b text-center">Created</th>
+                    <th class="py-2 px-4 border-b text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in page_obj %}
+                <tr>
+                    <td class="py-2 px-4 text-center">{{ complaint.id }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.ticket_number }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.customer_name }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.product }}</td>
+                    <td class="py-2 px-4 text-center">
+                        <span class="
+                            {% if complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                            {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                            {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                            {% else %}bg-gray-100 text-gray-800
+                            {% endif %}
+                            px-2 py-1 rounded text-xs font-medium">
+                            {{ complaint.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="py-2 px-4 text-center">
+                        {% if complaint.assigned_engineer %}
+                            {{ complaint.assigned_engineer.get_full_name|default:complaint.assigned_engineer.username }}
+                        {% else %}
+                            Not Assigned
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-4 text-center">{{ complaint.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="py-2 px-4 text-center">
+                        <a href="{% url 'complaint_edit' complaint.id %}" class="text-blue-600 hover:underline">Update</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center text-red-500 py-4">No complaints found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 📱 Card layout for mobile -->
+    <div class="md:hidden grid gap-4">
+        {% for complaint in page_obj %}
+        <div class="border rounded-xl p-4 shadow-sm bg-white">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-lg font-semibold">Ticket #{{ complaint.ticket_number }}</h3>
+                <span class="
+                    {% if complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                    {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                    {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                    {% else %}bg-gray-100 text-gray-800
+                    {% endif %}
+                    px-2 py-1 rounded text-xs font-medium">
+                    {{ complaint.get_status_display }}
+                </span>
+            </div>
+            <p class="text-sm"><strong>Customer:</strong> {{ complaint.customer_name }}</p>
+            <p class="text-sm"><strong>Product:</strong> {{ complaint.product }}</p>
+            <p class="text-sm">
+                <strong>Engineer:</strong>
+                {% if complaint.assigned_engineer %}
+                    {{ complaint.assigned_engineer.get_full_name|default:complaint.assigned_engineer.username }}
+                {% else %}
+                    Not Assigned
+                {% endif %}
+            </p>
+            <p class="text-sm"><strong>Created:</strong> {{ complaint.created_at|date:"Y-m-d H:i" }}</p>
+            <div class="mt-2">
+                <a href="{% url 'edit_complaint_by_manager' complaint.id %}" class="text-blue-600 hover:underline">Update</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-red-500">No complaints found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- 📄 Pagination -->
+    <div class="mt-6 flex justify-end items-center gap-4 text-sm">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}"
+               class="px-3 py-1 border rounded">« Prev</a>
+        {% endif %}
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}"
+               class="px-3 py-1 border rounded">Next »</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ sidebarOpen: false }" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Tally User Dashboard{% endblock %}</title>
+
+    <!-- ✅ Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#003366',
+                        secondary: '#005599',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white-100 text-gray-800 h-full">
+
+<div class="flex h-screen overflow-hidden">
+
+    <!-- Mobile backdrop -->
+    <div 
+        class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+        x-show="sidebarOpen"
+        x-transition.opacity
+        @click="sidebarOpen = false"
+    ></div>
+
+    <!-- Sidebar -->
+    <aside 
+        class="fixed inset-y-0 left-0 z-40 w-64 bg-primary text-white p-6 transform md:translate-x-0 transition-transform duration-200 ease-in-out md:static md:inset-0"
+        :class="{ '-translate-x-full': !sidebarOpen }"
+    >
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Tally User Panel</h2>
+            <button class="md:hidden" @click="sidebarOpen = false">
+                ✖
+            </button>
+        </div>
+
+        {% if user.is_authenticated %}
+            <p class="mb-4">👤 {{ user.username }} (Tally User)</p>
+
+            <nav class="space-y-3 text-sm">
+                <!-- Dashboard -->
+                <a href="{% url 'tally_dashboard' %}" class="flex items-center hover:bg-blue-800 px-3 py-2 rounded">
+                    <i class="fas fa-chart-line w-5 mr-2"></i>
+                    Dashboard
+                </a>
+
+                <!-- Complaints -->
+                <div>
+                    <p class="text-sm font-semibold mt-4 flex items-center">
+                        <i class="fas fa-tools w-4 mr-2"></i>
+                        Complaints
+                    </p>
+                    <ul class="pl-6 space-y-1">
+                        <li><a href="{% url 'show_tally_complaints' %}" class="block hover:text-blue-300">Show Complaints</a></li>
+                        <li><a href="{% url 'user_complaint_form' %}" class="block hover:text-blue-300">Register Complaint</a></li>
+                    </ul>
+                </div>
+
+                <!-- Settings -->
+                <div>
+                    <p class="text-sm font-semibold mt-4 flex items-center">
+                        <i class="fas fa-cog w-4 mr-2"></i>
+                        Settings
+                    </p>
+                    <ul class="pl-6 space-y-1">
+                        <li><a href="{% url 'change_password' %}" class="block hover:text-blue-300">Change Password</a></li>
+                    </ul>
+                </div>
+
+                <!-- Logout -->
+                <form method="POST" action="{% url 'logout' %}" class="mt-6 flex items-center">
+                    {% csrf_token %}
+                    <button type="submit" class="flex items-center text-white hover:text-red-400">
+                        <i class="fas fa-sign-out-alt w-5 mr-2"></i>
+                        Logout
+                    </button>
+                </form>
+            </nav>
+        {% else %}
+            <a href="{% url 'login' %}" class="underline hover:text-gray-300">Login</a>
+        {% endif %}
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-y-auto">
+        
+        <!-- Top bar (mobile) -->
+        <header class="md:hidden bg-white shadow p-4 flex items-center justify-between">
+            <button @click="sidebarOpen = true" class="text-primary text-2xl">☰</button>
+            <h1 class="text-lg font-semibold">Tally Dashboard</h1>
+        </header>
+
+        <main class="p-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="p-4 mb-4 rounded shadow-sm
+                        {% if message.tags == 'success' %}
+                            bg-green-100 text-green-800
+                        {% elif message.tags == 'error' %}
+                            bg-red-100 text-red-800
+                        {% else %}
+                            bg-blue-100 text-blue-800
+                        {% endif %}
+                    ">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="bg-primary text-white text-center py-3 mt-auto">
+            <p>&copy; 2025 Tally Dashboard</p>
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

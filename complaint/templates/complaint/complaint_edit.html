@@ -1,0 +1,94 @@
+{% extends base_template %}
+
+{% load static %}
+
+{% block title %}Update Complaint{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-6">
+<h2 class="text-xl font-semibold mb-6">Update Complaint #{{ complaint.ticket_number }}</h2>
+
+<form method="post" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+
+    {# Show Payment Method if available #}
+    {% if form.payment_method %}
+    <div>
+        <label class="font-semibold">{{ form.payment_method.label_tag }}</label>
+        {{ form.payment_method }}
+        {% for error in form.payment_method.errors %}
+            <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# Cash Payment Checkbox #}
+    <div id="cash-section" style="display: none;">
+        {% if form.mark_cash_paid %}
+        <div>
+            <label class="font-semibold">{{ form.mark_cash_paid.label_tag }}</label>
+            {{ form.mark_cash_paid }}
+            {% for error in form.mark_cash_paid.errors %}
+                <p class="text-red-500 text-sm">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# Online Payment Confirmation Upload #}
+    <div id="online-section" style="display: none;">
+        {% if form.payment_confirmation_photo %}
+        <div>
+            <label class="font-semibold">{{ form.payment_confirmation_photo.label_tag }}</label>
+            {{ form.payment_confirmation_photo }}
+            {% for error in form.payment_confirmation_photo.errors %}
+                <p class="text-red-500 text-sm">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# Render remaining visible fields except the payment ones already handled above #}
+    {% for field in form %}
+        {% if field.name != 'payment_method' and field.name != 'mark_cash_paid' and field.name != 'payment_confirmation_photo' %}
+            <div>
+                <label class="font-semibold">{{ field.label_tag }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <p class="text-red-500 text-sm">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded">Submit</button>
+</form>
+
+<div class="mt-4">
+    {% if request.user.profile.role == 'admin' %}
+        <div class="mt-4">
+            <a href="{% url 'complaint_detail' complaint.pk %}" class="text-blue-600 underline">← Back to Complaint Details</a>
+        </div>
+    {% endif %}
+</div>
+</div>
+<script>
+function handlePaymentMethodChange() {
+    const method = document.querySelector('select[name="payment_method"]').value;
+    const cashSection = document.getElementById('cash-section');
+    const onlineSection = document.getElementById('online-section');
+
+    cashSection.style.display = (method === 'cash') ? 'block' : 'none';
+    onlineSection.style.display = (method === 'online') ? 'block' : 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const paymentSelect = document.querySelector('select[name="payment_method"]');
+    if (paymentSelect) {
+        paymentSelect.addEventListener('change', handlePaymentMethodChange);
+        handlePaymentMethodChange(); // Initial setup
+    }
+});
+</script>
+{% endblock %}

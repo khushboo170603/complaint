@@ -1,0 +1,27 @@
+{% extends 'base_manager.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto p-6 bg-white rounded shadow">
+    <h2 class="text-2xl font-semibold mb-4">Edit Complaint: {{ complaint.ticket_number }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            {{ form.assigned_engineer.label_tag }}<br>
+            {{ form.assigned_engineer }}
+        </div>
+
+        <div class="mb-4">
+            {{ form.service_cost.label_tag }}<br>
+            {{ form.service_cost }}
+            {% if not service_cost_editable %}
+                <p class="text-sm text-gray-500">(Service cost cannot be changed once set.)</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Save Changes
+        </button>
+        <a href="{% url 'show_manager_complaints' %}" class="ml-4 text-gray-600 hover:underline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

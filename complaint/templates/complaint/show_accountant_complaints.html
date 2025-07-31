@@ -1,0 +1,124 @@
+{% extends 'base_accountant.html' %}
+{% block title %}Accountant Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4 text-gray-800">Complaint List</h2>
+
+<!-- Filters -->
+<form method="get" class="mb-4 flex flex-wrap gap-2 items-center">
+    <input type="text" name="search" placeholder="Search by ticket, customer, or product"
+           value="{{ search }}" class="px-3 py-2 border border-gray-300 rounded w-64">
+
+    <select name="status" class="px-3 py-2 border border-gray-300 rounded">
+        <option value="">All Statuses</option>
+        <option value="pending" {% if status == "pending" %}selected{% endif %}>Pending</option>
+        <option value="in_progress" {% if status == "in_progress" %}selected{% endif %}>In Progress</option>
+        <option value="resolved" {% if status == "resolved" %}selected{% endif %}>Resolved</option>
+    </select>
+
+    <input type="date" name="from_date" value="{{ from_date }}" class="px-3 py-2 border border-gray-300 rounded">
+    <input type="date" name="to_date" value="{{ to_date }}" class="px-3 py-2 border border-gray-300 rounded">
+
+    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Filter</button>
+
+    <a href="?search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}&export=true"
+       class="ml-auto bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm">
+        📥 Export to Excel
+    </a>
+</form>
+
+<!-- Complaints Table (Visible on medium and large screens) -->
+<div class="hidden sm:block overflow-x-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+    <table class="w-full text-sm text-left border-collapse">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-2 px-4 border-b text-center">ID</th>
+                <th class="py-2 px-4 border-b text-center">Ticket #</th>
+                <th class="py-2 px-4 border-b text-center">Customer</th>
+                <th class="py-2 px-4 border-b text-center">Product</th>
+                <th class="py-2 px-4 border-b text-center">Status</th>
+                <th class="py-2 px-4 border-b text-center">Service Cost</th>
+                <th class="py-2 px-4 border-b text-center">Payment Mode</th>
+                <th class="py-2 px-4 border-b text-center">Created At</th>
+                <th class="py-2 px-4 border-b text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in page_obj %}
+                <tr class="bg-white hover:bg-gray-50">
+                    <td class="py-2 px-4 text-center">{{ complaint.id }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.ticket_number }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.customer_name }}</td>
+                    <td class="py-2 px-4 text-center">
+                        {{ complaint.product|default:"-" }}
+                    </td>
+                    <td class="py-2 px-4 text-center">
+                        <span class="
+                            {% if complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                            {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                            {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                            {% else %}bg-gray-100 text-gray-600{% endif %}
+                            text-xs font-medium px-2 py-1 rounded">
+                            {{ complaint.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="py-2 px-4 text-center">{{ complaint.service_cost|default:"-" }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.payment_method|default:"-" }}</td>
+                    <td class="py-2 px-4 text-center">{{ complaint.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="py-2 px-4 text-center">
+                        <a href="{% url 'complaint_edit' complaint.id %}" class="text-blue-600 hover:underline">Update</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="9" class="py-4 text-center text-red-500">No complaints found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- 📱 Card Layout for Small Screens -->
+<div class="space-y-4 sm:hidden mt-6">
+    {% for complaint in page_obj %}
+    <div class="border rounded-lg shadow p-4">
+        <div class="flex justify-between items-center mb-2">
+            <div class="font-semibold text-blue-700">#{{ complaint.ticket_number }}</div>
+            <span class="{% if complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                         {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                         {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                         {% else %}bg-gray-100 text-gray-600{% endif %}
+                         text-xs font-medium px-2 py-1 rounded">
+                {{ complaint.get_status_display }}
+            </span>
+        </div>
+        <div class="text-sm text-gray-700 space-y-1">
+            <div><strong>Customer:</strong> {{ complaint.customer_name }}</div>
+            <div><strong>Product:</strong> {{ complaint.product|default:"-" }}</div>
+            <div><strong>Service Cost:</strong> {{ complaint.service_cost|default:"-" }}</div>
+            <div><strong>Payment Mode:</strong> {{ complaint.payment_method|default:"-" }}</div>
+            <div><strong>Created:</strong> {{ complaint.created_at|date:"Y-m-d H:i" }}</div>
+        </div>
+        <div class="mt-2">
+            <a href="{% url 'complaint_edit' complaint.id %}" class="text-blue-600 hover:underline text-sm">Update</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="text-center text-red-500 mt-4">No complaints found.</div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+<div class="mt-6 flex justify-end gap-4 text-sm">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}" class="text-blue-600 hover:underline">« Previous</a>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&search={{ search }}&status={{ status }}&from_date={{ from_date }}&to_date={{ to_date }}" class="text-blue-600 hover:underline">Next »</a>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 30px;">Dashboard</h2>
+
+<style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .dashboard-card {
+        background-color: #fff;
+        border-left: 5px solid #007bff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .dashboard-card:hover {
+        transform: scale(1.03);
+    }
+
+    .dashboard-card h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .dashboard-card p {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+
+    .dashboard-card a {
+        display: block;
+        text-align: right;
+        color: #007bff;
+        text-decoration: none;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    .icon {
+        float: right;
+        font-size: 30px;
+        color: #bbb;
+    }
+</style>
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card" style="border-left-color: #343a40;">
+        <h3>TOTAL COMPLAINTS <span class="icon">🗂️</span></h3>
+        <p>{{ total_complaints }}</p>
+        <a href="{% url 'complaint_list' %}">View →</a>
+    </div>
+
+    <div class="dashboard-card" style="border-left-color: #ffc107;">
+        <h3>PENDING COMPLAINTS <span class="icon">⏳</span></h3>
+        <p>{{ pending_complaints }}</p>
+        <a href="{% url 'complaint_list' %}?status=pending">View →</a>
+    </div>
+
+    <div class="dashboard-card" style="border-left-color: #dc3545;">
+        <h3>NOT ASSIGNED COMPLAINTS <span class="icon">📥</span></h3>
+        <p>{{ not_assigned_complaints }}</p>
+        <a href="{% url 'complaint_list' %}?unassigned=true">View →</a>
+    </div>
+
+    <div class="dashboard-card" style="border-left-color: #6f42c1;">
+        <h3>TOTAL STAFF <span class="icon">👥</span></h3>
+        <p>{{ total_staff }}</p>
+        <a href="{% url 'show_staff' %}">View →</a>
+    </div>
+
+    <div class="dashboard-card" style="border-left-color: #17a2b8;">
+        <h3>TOTAL PRODUCTS <span class="icon">📦</span></h3>
+        <p>{{ total_products }}</p>
+        <a href="{% url 'product_list' %}">View →</a>
+    </div>
+
+</div>
+{% endblock %}

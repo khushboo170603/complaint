@@ -1,0 +1,142 @@
+{% extends 'base_engineer.html' %}
+{% load static %}
+
+{% block title %}Assigned Complaints{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-6 px-4 sm:px-6 lg:px-0">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Assigned Complaints</h2>
+
+    <!-- 🔍 Filter Form -->
+    <form method="get" class="mb-4 flex flex-col sm:flex-row sm:flex-wrap gap-4">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700">Search</label>
+            <input type="text" name="search" value="{{ search_query }}" placeholder="Search"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700">Status</label>
+            <select name="status" class="w-full px-3 py-2 border rounded border-gray-300">
+                <option value="">All Statuses</option>
+                <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>In Progress</option>
+                <option value="resolved" {% if status_filter == 'resolved' %}selected{% endif %}>Resolved</option>
+            </select>
+        </div>
+
+        <div class="flex-1 min-w-[150px]">
+            <label class="block text-sm font-medium text-gray-700">Start Date</label>
+            <input type="date" name="start_date" value="{{ start_date }}"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="flex-1 min-w-[150px]">
+            <label class="block text-sm font-medium text-gray-700">End Date</label>
+            <input type="date" name="end_date" value="{{ end_date }}"
+                   class="w-full px-3 py-2 border rounded border-gray-300">
+        </div>
+
+        <div class="sm:self-end">
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply</button>
+        </div>
+    </form>
+
+    {% if page_obj %}
+    <!-- 🖥️ Table View for medium and up -->
+    <div class="hidden md:block overflow-x-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+            <thead class="bg-gray-100 text-left text-gray-700">
+                <tr>
+                    <th class="py-2 px-2 text-center">Ticket No.</th>
+                    <th class="py-2 px-2 text-center">Customer</th>
+                    <th class="py-2 px-2 text-center">Mobile</th>
+                    <th class="py-2 px-2 text-center">Address</th>
+                    <th class="py-2 px-2 text-center">Product</th>
+                    <th class="py-2 px-2 text-center">Issue</th>
+                    <th class="py-2 px-2 text-center">Status</th>
+                    <th class="py-2 px-2 text-center">Date</th>
+                    <th class="py-2 px-2 text-center">Payment</th>
+                    <th class="py-2 px-2 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-100">
+                {% for complaint in page_obj %}
+                <tr class="hover:bg-gray-50">
+                    <td class="py-2 px-2 text-center text-blue-700 font-medium">{{ complaint.ticket_number }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.customer_name }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.mobile_number }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.full_address|default:"-" }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.product.model_name|default:"Other" }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.issue_type|default:"-" }}</td>
+                    <td class="py-2 px-2 text-center">
+                        <span class="{% if complaint.status == 'resolved' %}bg-green-100 text-green-800
+                                     {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                                     {% elif complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                     {% else %}bg-gray-100 text-gray-600{% endif %}
+                                     text-xs font-medium px-2 py-1 rounded">
+                            {{ complaint.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="py-2 px-2 text-center">{{ complaint.created_at|date:"Y-m-d" }}</td>
+                    <td class="py-2 px-2 text-center">{{ complaint.payment_status|default:"N/A" }}</td>
+                    <td class="py-2 px-2 text-center">
+                        <a href="{% url 'update_complaint' complaint.id %}" class="text-blue-600 hover:underline text-sm">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 📱 Card Layout for small screens -->
+    <div class="md:hidden space-y-4 mt-4">
+        {% for complaint in page_obj %}
+        <div class="bg-white shadow rounded-lg p-4 border border-gray-200">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-blue-700 font-bold text-sm">#{{ complaint.ticket_number }}</h3>
+                <span class="text-xs px-2 py-1 rounded 
+                    {% if complaint.status == 'pending' %}bg-yellow-100 text-yellow-800
+                    {% elif complaint.status == 'resolved' %}bg-green-100 text-green-800
+                    {% elif complaint.status == 'in_progress' %}bg-blue-100 text-blue-800
+                    {% else %}bg-gray-100 text-gray-600{% endif %}">
+                    {{ complaint.get_status_display }}
+                </span>
+            </div>
+            <p class="text-sm"><strong>Customer:</strong> {{ complaint.customer_name }}</p>
+            <p class="text-sm"><strong>Mobile:</strong> {{ complaint.mobile_number }}</p>
+            <p class="text-sm"><strong>Address:</strong> {{ complaint.full_address|default:"-" }}</p>
+            <p class="text-sm"><strong>Product:</strong> {{ complaint.product.model_name|default:"Other" }}</p>
+            <p class="text-sm"><strong>Issue:</strong> {{ complaint.issue_type|default:"-" }}</p>
+            <p class="text-sm"><strong>Date:</strong> {{ complaint.created_at|date:"Y-m-d" }}</p>
+            <p class="text-sm"><strong>Payment:</strong> {{ complaint.payment_status|default:"N/A" }}</p>
+            <div class="mt-2">
+                <a href="{% url 'update_complaint' complaint.id %}"
+                   class="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-4 flex justify-center sm:justify-end">
+        <nav class="inline-flex items-center space-x-1 text-sm">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search_query }}&status={{ status_filter }}&start_date={{ start_date }}&end_date={{ end_date }}"
+               class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100">Previous</a>
+            {% endif %}
+
+            <span class="px-4 py-1 text-gray-700">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search_query }}&status={{ status_filter }}&start_date={{ start_date }}&end_date={{ end_date }}"
+               class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100">Next</a>
+            {% endif %}
+        </nav>
+    </div>
+    {% else %}
+    <p class="text-gray-600 mt-4">No complaints assigned to you yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
