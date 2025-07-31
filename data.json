@@ -1,0 +1,1375 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "complaint",
+    "model": "profile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "complaint",
+    "model": "complaint"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "complaint",
+    "model": "smslog"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "product",
+    "model": "product"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "54bhyjxvjunjrmoljes7qwuqfhdwks0s",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGllZjJ2Ykp4zRPszDiBbipMKcXeIlALaNzPvZUZclzyuTedxEnM2YA6_GyE_tGxA7lhu1XItyzyR3RS702avVfR52d2_g4wtf2vqUhhSZHWJkcQ76OWIFOnUuxiAGQbxQQUlKPiIiUIHTiQgMGkE8_4AEr85HA:1uh2xo:QY_-dgZVWykmYZ8JNrzFEfKfgxFzu2D9R4NF2XKEaQc",
+    "expire_date": "2025-08-13T09:19:08.925Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5gkswtns0wwresch0d8cc81ndw22l9el",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSEUyqMu3fsNZJgZpGogKe3K-O_apAvd3nPOfYkI21ri1nmJM4mzGMTpd0uAD647oDvUW5PY6rrMSe6KPGiX10b8vBzu30GBXr41ejZMWSevIOdBkUG0LoP1akIk55NSYFmFRFNGw2F01gQYwQdtrNfi_QETIDhh:1ug5Zp:20t87lD5_yir4MXjGtg1wdJGEqO_-3uadFQTrQofLz4",
+    "expire_date": "2025-08-10T17:54:25.342Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "a37grqbvvob8zulz1jz4r54b2z9fh89w",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmOY2ezlPScwdpfSAAlUj4V4u4QKQW0b2beyxXa1r5si81lUHd20Z1-NyZ52LgDvdN4m7xM4zoP7HfFH3Tx10nteTncv4Oelv5bd8jSYGMtNlXCWFc5GVOqARKGCnLWpJ2KQQucTYiDaWyx4xAhMop7fwDVSDfv:1ueA9G:Vdw5QcY4A2TnJsdGs4AAdnZJvLtWPvc67NsWW5iKWhs",
+    "expire_date": "2025-08-05T10:23:02.026Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kyudpawwlh8di4qcbvae51a19bt7dsfr",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-r6GkzxmiXe8KB5AjxUmFuDtESgHtm5n3UiNuax23Lss4sbooq06_G2F5SNsB37HdZl3mti4T6V3RB-16mFme18P9O6jY67f2wBkzi2fMCQtFwwJC_gxEFlOwDlyK3hFTYOPAFkMxF4FQwKKAen8A_Vk4Uw:1ue7hP:4oUBXbF0pd7oJm-xl99RPAx6J73iAHiF_OA4JrGDGJQ",
+    "expire_date": "2025-08-05T07:46:07.947Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yu0tayw1s3i9cihsdow1xrsh0s2qj85v",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSEUyqMu3fsNZJgZpGogKe3K-O_apAvd3nPOfYkI21ri1nmJM4mzGMTpd0uAD647oDvUW5PY6rrMSe6KPGiX10b8vBzu30GBXr41ejZMWSevIOdBkUG0LoP1akIk55NSYFmFRFNGw2F01gQYwQdtrNfi_QETIDhh:1ufGE5:hq-gtH10xWpCzQ0t0PNxtvdEoOWpOHo6-qusvWwcZ_E",
+    "expire_date": "2025-08-08T11:04:33.811Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 1,
+  "fields": {
+    "mobile_number": "5236975896",
+    "message": "Your complaint has been registered. Ticket No: 74204345",
+    "sent_at": "2025-07-18T07:11:37.920Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 2,
+  "fields": {
+    "mobile_number": "5236975896",
+    "message": "Your complaint has been registered. Ticket No: 70857273",
+    "sent_at": "2025-07-22T11:44:20.566Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 3,
+  "fields": {
+    "mobile_number": "4685836756",
+    "message": "Your complaint has been registered. Ticket No: 81088600",
+    "sent_at": "2025-07-23T09:39:39.900Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 4,
+  "fields": {
+    "mobile_number": "4863597485",
+    "message": "Your complaint has been registered. Ticket No: 23491839",
+    "sent_at": "2025-07-28T09:01:20.456Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 5,
+  "fields": {
+    "mobile_number": "4523698712",
+    "message": "Your complaint has been registered. Ticket No: 32613329",
+    "sent_at": "2025-07-28T15:19:49.328Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 6,
+  "fields": {
+    "mobile_number": "4563217892",
+    "message": "Your complaint has been registered. Ticket No: 02137500",
+    "sent_at": "2025-07-30T08:16:25.456Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 7,
+  "fields": {
+    "mobile_number": "4563217892",
+    "message": "Your complaint has been registered. Ticket No: 71491042",
+    "sent_at": "2025-07-30T08:25:17.504Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 8,
+  "fields": {
+    "mobile_number": "4566789632",
+    "message": "Your complaint has been registered. Ticket No: 49654800",
+    "sent_at": "2025-07-30T09:49:07.144Z"
+  }
+},
+{
+  "model": "complaint.smslog",
+  "pk": 9,
+  "fields": {
+    "mobile_number": "7896542318",
+    "message": "Your complaint has been registered. Ticket No: 85857102",
+    "sent_at": "2025-07-30T09:51:25.578Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add User Profile",
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change User Profile",
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete User Profile",
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view User Profile",
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "codename": "view_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Customer Complaint",
+    "content_type": [
+      "complaint",
+      "complaint"
+    ],
+    "codename": "add_complaint"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Customer Complaint",
+    "content_type": [
+      "complaint",
+      "complaint"
+    ],
+    "codename": "change_complaint"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Customer Complaint",
+    "content_type": [
+      "complaint",
+      "complaint"
+    ],
+    "codename": "delete_complaint"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Customer Complaint",
+    "content_type": [
+      "complaint",
+      "complaint"
+    ],
+    "codename": "view_complaint"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add SMS Log",
+    "content_type": [
+      "complaint",
+      "smslog"
+    ],
+    "codename": "add_smslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change SMS Log",
+    "content_type": [
+      "complaint",
+      "smslog"
+    ],
+    "codename": "change_smslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete SMS Log",
+    "content_type": [
+      "complaint",
+      "smslog"
+    ],
+    "codename": "delete_smslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view SMS Log",
+    "content_type": [
+      "complaint",
+      "smslog"
+    ],
+    "codename": "view_smslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add product",
+    "content_type": [
+      "product",
+      "product"
+    ],
+    "codename": "add_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change product",
+    "content_type": [
+      "product",
+      "product"
+    ],
+    "codename": "change_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete product",
+    "content_type": [
+      "product",
+      "product"
+    ],
+    "codename": "delete_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view product",
+    "content_type": [
+      "product",
+      "product"
+    ],
+    "codename": "view_product"
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "service_manager",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "engineer",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "accountant",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tally_user",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$7lGgqMrHZ0fKTl6O5K971W$CJboAc8eEiRYtBtjHIg9vCD8UAb18MxqnmXEqKUgqig=",
+    "last_login": "2025-07-31T06:32:21.885Z",
+    "is_superuser": true,
+    "username": "Admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin0@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-18T07:10:29.498Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$hUOHWmNNyOmr5ILXuvfOOg$CQoREUKeWcSGquWkyEcqFipPh65E7ONCrbDCAWCTnZs=",
+    "last_login": "2025-07-29T07:59:11.090Z",
+    "is_superuser": false,
+    "username": "ravi",
+    "first_name": "",
+    "last_name": "",
+    "email": "ravi@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-18T08:05:53Z",
+    "groups": [
+      [
+        "service_manager"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$lghsj5aNNiaNCqsDZq1gUq$49KYxQYOeF5LJXQ6gTD4NCQh0BzVAd+KL/5/FOelM70=",
+    "last_login": "2025-07-31T06:36:30.789Z",
+    "is_superuser": false,
+    "username": "sunny",
+    "first_name": "",
+    "last_name": "",
+    "email": "sunny0@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-18T09:52:34.766Z",
+    "groups": [
+      [
+        "engineer"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$LC3SoWwjFt6KhZfXFOaBwR$u16pGB4Jxa0ttepk6p+EJe53ddmXBMo0gixSdFO1Zt0=",
+    "last_login": "2025-07-29T07:58:20Z",
+    "is_superuser": false,
+    "username": "rahul",
+    "first_name": "",
+    "last_name": "",
+    "email": "khushboopanjwani101@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-18T11:34:34Z",
+    "groups": [
+      [
+        "accountant"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$tRWH71NAdZo4nQV9FBmRDl$AbviSnXFxXBjFtux5ZIcD6ob6izaM3ckeVcb03mG8t0=",
+    "last_login": "2025-07-30T06:45:58.326Z",
+    "is_superuser": false,
+    "username": "neha",
+    "first_name": "",
+    "last_name": "",
+    "email": "khushboopanjwani05@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-18T11:35:26Z",
+    "groups": [
+      [
+        "tally_user"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "complaint.profile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "Admin"
+    ],
+    "role": "admin"
+  }
+},
+{
+  "model": "complaint.profile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "ravi"
+    ],
+    "role": "manager"
+  }
+},
+{
+  "model": "complaint.profile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "sunny"
+    ],
+    "role": "engineer"
+  }
+},
+{
+  "model": "complaint.profile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "rahul"
+    ],
+    "role": "accountant"
+  }
+},
+{
+  "model": "complaint.profile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "neha"
+    ],
+    "role": "tally"
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 1,
+  "fields": {
+    "customer_name": "Aru",
+    "mobile_number": "5236975896",
+    "email": "aru0@gmail.com",
+    "product": null,
+    "issue_type": "OPS-not-working",
+    "description": "ddcc",
+    "ticket_number": "74204345",
+    "status": "in_progress",
+    "created_at": "2025-07-18T07:11:37.906Z",
+    "updated_at": "2025-07-23T07:11:38.034Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": "2025-07-23T07:11:38.034Z",
+    "resolved_date": null,
+    "product_serial_number": "124",
+    "service_confirmation_photo": "",
+    "service_cost": "400.00",
+    "payment_method": null,
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 74204345",
+    "pincode": null,
+    "city": null,
+    "state": null,
+    "area": null,
+    "street": null,
+    "landmark": null
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 2,
+  "fields": {
+    "customer_name": "harsh",
+    "mobile_number": "45896235975",
+    "email": "harsh0@gmail.com",
+    "product": null,
+    "issue_type": "Total-Dead",
+    "description": "ghjhgg",
+    "ticket_number": "97551809",
+    "status": "resolved",
+    "created_at": "2025-07-18T10:37:57.681Z",
+    "updated_at": "2025-07-18T11:31:56.301Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": "2025-07-18T10:38:08.513Z",
+    "resolved_date": "2025-07-18T11:31:56.301Z",
+    "product_serial_number": "12352",
+    "service_confirmation_photo": "service_confirmations/Screenshot_1.png",
+    "service_cost": "700.00",
+    "payment_method": "cash",
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": null,
+    "pincode": null,
+    "city": null,
+    "state": null,
+    "area": null,
+    "street": null,
+    "landmark": null
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 3,
+  "fields": {
+    "customer_name": "Khushboo Panjwani",
+    "mobile_number": "4685836632565",
+    "email": "khushboopanjwani0@gmail.com",
+    "product": 1,
+    "issue_type": "Installation",
+    "description": "call for installation",
+    "ticket_number": "08901133",
+    "status": "resolved",
+    "created_at": "2025-07-22T10:19:29.576Z",
+    "updated_at": "2025-07-28T15:17:21.630Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": "2025-07-28T10:17:03.564Z",
+    "product_serial_number": "12351",
+    "service_confirmation_photo": "service_confirmations/Screenshot_2.png",
+    "service_cost": "500.00",
+    "payment_method": null,
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": null,
+    "pincode": null,
+    "city": null,
+    "state": null,
+    "area": null,
+    "street": null,
+    "landmark": null
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 4,
+  "fields": {
+    "customer_name": "ganesh",
+    "mobile_number": "5236975896",
+    "email": "gannu0@gmail.com",
+    "product": 1,
+    "issue_type": "Touch-Issue",
+    "description": "touch is not working",
+    "ticket_number": "70857273",
+    "status": "pending",
+    "created_at": "2025-07-22T11:44:20.552Z",
+    "updated_at": "2025-07-23T07:08:27.628Z",
+    "assigned_engineer": null,
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": "500.00",
+    "payment_method": "online",
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "payment_confirmations/Screenshot_2_OmSCvad.png",
+    "sms_log": "Your complaint has been registered. Ticket No: 70857273",
+    "pincode": null,
+    "city": null,
+    "state": null,
+    "area": null,
+    "street": null,
+    "landmark": null
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 5,
+  "fields": {
+    "customer_name": "Khushbo",
+    "mobile_number": "4685836756",
+    "email": "khushboopanjwani0@gmail.com",
+    "product": null,
+    "issue_type": "Sound-Problem",
+    "description": "bnxnx",
+    "ticket_number": "81088600",
+    "status": "open",
+    "created_at": "2025-07-23T09:39:39.881Z",
+    "updated_at": "2025-07-28T15:15:48.377Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": "800.00",
+    "payment_method": null,
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 81088600",
+    "pincode": null,
+    "city": null,
+    "state": null,
+    "area": null,
+    "street": null,
+    "landmark": null
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 6,
+  "fields": {
+    "customer_name": "sakshi",
+    "mobile_number": "4863597485",
+    "email": "kh@co.in",
+    "product": 1,
+    "issue_type": "Other",
+    "description": "ghhjjjh",
+    "ticket_number": "23491839",
+    "status": "open",
+    "created_at": "2025-07-28T09:01:20.053Z",
+    "updated_at": "2025-07-28T15:08:55.066Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": "800.00",
+    "payment_method": "cash",
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 23491839",
+    "pincode": "492001",
+    "city": "Raipur",
+    "state": "Chattisgarh",
+    "area": "jh",
+    "street": "7",
+    "landmark": ""
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 7,
+  "fields": {
+    "customer_name": "raj",
+    "mobile_number": "4523698712",
+    "email": "raj@gmail.com",
+    "product": 1,
+    "issue_type": "App-Issue",
+    "description": "uyttgf",
+    "ticket_number": "32613329",
+    "status": "in_progress",
+    "created_at": "2025-07-28T15:19:48.893Z",
+    "updated_at": "2025-07-28T15:28:28.132Z",
+    "assigned_engineer": [
+      "sunny"
+    ],
+    "resolution_photo": "",
+    "assigned_date": "2025-07-28T15:28:28.132Z",
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": "500.00",
+    "payment_method": "cash",
+    "payment_status": "paid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 32613329",
+    "pincode": "493222",
+    "city": "Raipur",
+    "state": "Chattisgarh",
+    "area": "baloda bazar",
+    "street": "2",
+    "landmark": ""
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 8,
+  "fields": {
+    "customer_name": "shrishti",
+    "mobile_number": "4563217892",
+    "email": "shrishti@gmail.com",
+    "product": 1,
+    "issue_type": "Break",
+    "description": "kndnnxjjx",
+    "ticket_number": "02137500",
+    "status": "open",
+    "created_at": "2025-07-30T08:16:25.034Z",
+    "updated_at": "2025-07-30T08:16:25.523Z",
+    "assigned_engineer": null,
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": null,
+    "payment_method": null,
+    "payment_status": "unpaid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 02137500",
+    "pincode": "110001",
+    "city": "Central Delhi",
+    "state": "Delhi",
+    "area": "pragati maidan",
+    "street": "4",
+    "landmark": ""
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 9,
+  "fields": {
+    "customer_name": "shrishti",
+    "mobile_number": "4563217892",
+    "email": "shrishti@gmail.com",
+    "product": 1,
+    "issue_type": "Break",
+    "description": "kndnnxjjx",
+    "ticket_number": "71491042",
+    "status": "open",
+    "created_at": "2025-07-30T08:25:17.061Z",
+    "updated_at": "2025-07-30T08:25:17.557Z",
+    "assigned_engineer": null,
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": null,
+    "payment_method": null,
+    "payment_status": "unpaid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 71491042",
+    "pincode": "110001",
+    "city": "Central Delhi",
+    "state": "Delhi",
+    "area": "pragati maidan",
+    "street": "4",
+    "landmark": ""
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 10,
+  "fields": {
+    "customer_name": "rahul",
+    "mobile_number": "4566789632",
+    "email": "rahulgangwani2001@gmail.com",
+    "product": 1,
+    "issue_type": "Installation",
+    "description": "jhhgfff",
+    "ticket_number": "49654800",
+    "status": "open",
+    "created_at": "2025-07-30T09:49:06.647Z",
+    "updated_at": "2025-07-30T09:49:07.198Z",
+    "assigned_engineer": null,
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": null,
+    "payment_method": null,
+    "payment_status": "unpaid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 49654800",
+    "pincode": "492001",
+    "city": "Raipur",
+    "state": "Chattisgarh",
+    "area": "rajendra nagar",
+    "street": "7",
+    "landmark": ""
+  }
+},
+{
+  "model": "complaint.complaint",
+  "pk": 11,
+  "fields": {
+    "customer_name": "sunny",
+    "mobile_number": "7896542318",
+    "email": "vanshmakhija0007@gmail.com",
+    "product": 1,
+    "issue_type": "Touch-Issue",
+    "description": "hjjjsjs",
+    "ticket_number": "85857102",
+    "status": "open",
+    "created_at": "2025-07-30T09:51:25.179Z",
+    "updated_at": "2025-07-30T09:51:25.632Z",
+    "assigned_engineer": null,
+    "resolution_photo": "",
+    "assigned_date": null,
+    "resolved_date": null,
+    "product_serial_number": null,
+    "service_confirmation_photo": "",
+    "service_cost": null,
+    "payment_method": null,
+    "payment_status": "unpaid",
+    "payment_proof": "",
+    "payment_confirmation_photo": "",
+    "sms_log": "Your complaint has been registered. Ticket No: 85857102",
+    "pincode": "492001",
+    "city": "Raipur",
+    "state": "Chattisgarh",
+    "area": "devendra nagar",
+    "street": "5",
+    "landmark": ""
+  }
+},
+{
+  "model": "product.product",
+  "pk": 1,
+  "fields": {
+    "serial_number": "2343455",
+    "model_name": "scanner a34",
+    "sold_to": "xyz",
+    "sold_date": "2025-07-08",
+    "installation_date": null,
+    "assigned_engineer": null,
+    "invoice": "",
+    "warranty_start": "2025-07-08",
+    "warranty_end": "2026-07-08"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-07-18T07:16:19.699Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "object_id": "1",
+    "object_repr": "Admin - admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-07-18T08:08:00.968Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "object_id": "2",
+    "object_repr": "Ravi - manager",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-07-22T07:16:40.970Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "complaint",
+      "profile"
+    ],
+    "object_id": "5",
+    "object_repr": "neha - tally",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-07-23T10:55:30.177Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "Admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-07-27T16:13:41.703Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Ravi",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-07-27T16:16:11.157Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "ravi",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-07-27T16:16:38.859Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "ravi",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-07-29T09:03:21.103Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "neha",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-07-30T07:33:08.927Z",
+    "user": [
+      "Admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "rahul",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+}
+]
