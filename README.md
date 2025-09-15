@@ -1,5 +1,7 @@
 # Complaint Registration System
 
+A full-stack Django application for end-to-end complaint management with SMS/email notifications and product warranty tracking.
+
 ## Key Features of Complaint Registration System
 - **Public Complaint Submission**: Customers can register complaints without logging in, and receive an auto-generated ticket number with SMS/email confirmation.  
 - **Role-Based Dashboards**: Separate dashboards for Admin, Manager, Engineer, Accountant, Tally User, and Customer with restricted access.  
